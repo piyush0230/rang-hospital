@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Display Login Data</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .container {
+            max-width: 400px;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+        .data {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Login Data</h1>
+        <div class="data">
+            <p id="displayUsername"></p>
+            <p id="displayPassword"></p>
+        </div>
+    </div>
+    <script>
+        // Get data from localStorage
+        const username = localStorage.getItem('username');
+        const password = localStorage.getItem('password');
+
+        // Display the data
+        document.getElementById('displayUsername').textContent = 'Username: ' + username;
+        document.getElementById('displayPassword').textContent = 'Password: ' + password;
+    </script>
+</body>
+</html>

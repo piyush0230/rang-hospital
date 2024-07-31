@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hospital Login</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-image: url('hospital.jpg');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            color: #fff;
+            text-align: center;
+        }
+        .container {
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            text-align: center;
+            color: #007bff;
+        }
+        form {
+            margin-top: 30px;
+        }
+        input[type="text"],
+        input[type="password"],
+        button {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box;
+            font-size: 16px;
+        }
+        button {
+            background-color: #007bff;
+            color: #fff;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        .signup-link {
+            text-align: center;
+            margin-top: 20px;
+        }
+        .signup-link a,
+        .home-link a,
+        .register-link a:hover {
+            color: #007bff;
+            text-decoration: none;
+        }
+        .signup-link a:hover,
+        .home-link a:hover,
+        .register-link a:hover {
+            text-decoration: underline;
+        }
+        .home-box {
+            margin-top: 30px;
+            padding: 10px;
+            border: 2px solid #007bff;
+            border-radius: 5px;
+            display: inline-block;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Hospital Login</h1>
+        <form id="loginForm" action="login.php" method="POST">
+            <input type="text" name="username" placeholder="Username" required>
+            <input type="password" id="password" name="password" placeholder="Password" required>
+            <button type="submit">Login</button>
+        </form>
+        <div class="signup-link">
+            Don't have an account? <a href="signup.html">Sign Up</a>
+        </div>
+        
+        </div>
+        <div class="home-box">
+            <div class="home-link">
+                <a href="index.html">Home</a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+    document.getElementById('loginForm').addEventListener('submit', function(event) {
+        const password = document.getElementById('password').value;
+        const passwordPattern = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{9,}$/;
+
+        if (!passwordPattern.test(password)) {
+            event.preventDefault();
+            alert('Password must be more than 8 characters long and contain at least one alphabetical character and one numerical character.');
+        } else {
+            event.preventDefault();
+            alert('Login successful! Now you can fill out the registration form.');
+            window.location.href = 'register.html';
+        }
+    });
+    </script>
+</body>
+</html>

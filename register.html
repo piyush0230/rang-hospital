@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Patient Registration</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            text-align: left;
+            background-color: powderblue;
+        }
+        .container {
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        }
+        h2 {
+            text-align:center;
+            color: #007bff;
+        }
+        form {
+            margin-top: 30px;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+        }
+        input[type="text"],
+        input[type="email"],
+        input[type="tel"],
+        input[type="date"],
+        textarea,
+        select {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box;
+            font-size: 16px;
+        }
+        input[type="submit"] {
+            width: auto;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+        }
+        input[type="submit"]:hover {
+            background-color: #0056b3;
+        }
+        .home-box {
+            margin-top: 30px;
+            padding: 10px;
+            border: 2px solid #007bff;
+            border-radius: 5px;
+            display: inline-block;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h2>Patient Registration</h2>
+    <form id="registrationForm">
+        <label for="first_name">First Name:</label>
+        <input type="text" id="first_name" name="first_name" required>
+        <br><br>
+        <label for="last_name">Last Name:</label>
+        <input type="text" id="last_name" name="last_name" required>
+        <br><br>
+        <label for="dob">Date of Birth:</label>
+        <input type="date" id="dob" name="dob" required>
+        <br>
+        <label for="gender">Gender:</label>
+        <select id="gender" name="gender" required>
+            <option value="male">Male</option>
+            <option value="female">Female</option>
+            <option value="other">Other</option>
+        </select>  
+        <br><br>
+        <label for="address">Address:</label>
+        <textarea id="address" name="address" required></textarea>
+        <br><br>
+        <label for="phone">Phone Number:</label>
+        <input type="tel" id="phone" name="phone" required>
+        <br><br>
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" required>
+        <br><br>
+        <label for="disease">Select Type of Disease:</label>
+        <select id="disease" name="disease" required>
+            <option value="cardiology">Cardiology</option>
+            <option value="orthopedics">Orthopedics</option>
+            <option value="neurology">Neurology</option>
+            <option value="dermatology">Dermatology</option>
+            <option value="oncology">Oncology</option>
+        </select>
+        <br><br>
+        <input type="submit" value="Register">
+    </form>
+</div>
+<div class="home-box">
+    <div class="home-link">
+        <a href="index.html">Home</a>
+    </div>
+</div>
+
+<script>
+document.getElementById('first_name').addEventListener('input', function(event) {
+    const namePattern = /^[A-Za-z]*$/;
+    if (!namePattern.test(event.target.value)) {
+        event.target.setCustomValidity('First Name should contain only alphabets.');
+    } else {
+        event.target.setCustomValidity('');
+    }
+});
+
+document.getElementById('last_name').addEventListener('input', function(event) {
+    const namePattern = /^[A-Za-z]*$/;
+    if (!namePattern.test(event.target.value)) {
+        event.target.setCustomValidity('Last Name should contain only alphabets.');
+    } else {
+        event.target.setCustomValidity('');
+    }
+});
+
+document.getElementById('phone').addEventListener('input', function(event) {
+    const phonePattern = /^[0-9]*$/;
+    if (!phonePattern.test(event.target.value)) {
+        event.target.setCustomValidity('Phone Number should contain only numbers.');
+    } else {
+        event.target.setCustomValidity('');
+    }
+});
+
+document.getElementById('email').addEventListener('input', function(event) {
+    const emailPattern = /^[A-Za-z]+@[A-Za-z]+\.[A-Za-z]{2,}$/;
+    if (!emailPattern.test(event.target.value)) {
+        event.target.setCustomValidity('Email should be in the format "example@domain.com".');
+    } else {
+        event.target.setCustomValidity('');
+    }
+});
+
+document.getElementById('registrationForm').addEventListener('submit', function(event) {
+    event.preventDefault(); // Prevent form submission
+
+    // Get form data
+    const formData = {
+        firstName: document.getElementById('first_name').value,
+        lastName: document.getElementById('last_name').value,
+        dob: document.getElementById('dob').value,
+        gender: document.getElementById('gender').value,
+        address: document.getElementById('address').value,
+        phone: document.getElementById('phone').value,
+        email: document.getElementById('email').value,
+        disease: document.getElementById('disease').value
+    };
+
+    // Validate form data
+    if (!formData.firstName || !formData.lastName || !formData.dob || !formData.gender ||
+        !formData.address || !formData.phone || !formData.email || !formData.disease) {
+        alert('Please fill in all fields.');
+        return;
+    }
+
+    // Save data to localStorage
+    localStorage.setItem('registrationData', JSON.stringify(formData));
+
+    // Display success message or redirect to a new page
+    alert('Registration successful!');
+    // window.location.href = 'thank_you.html'; // Redirect to a thank you page if desired
+});
+</script>
+
+</body>
+</html>
